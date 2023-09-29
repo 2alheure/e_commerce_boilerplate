@@ -12,7 +12,7 @@
 				<img class="w-full" src="{{ asset('assets/images/products/' ~ product.image) }}" alt="Sunset in the mountains">
 				<div class="px-6 py-4">
 					<div class="font-bold text-xl mb-2">{{ product.nom }}</div>
-					<p class="text-gray-700 text-base">{{product.prix|number_format(2,',',' ') }}&nbsp;€</p>
+					<p class="text-gray-700 text-base">{{(product.prix / 100)|number_format(2,',',' ') }}&nbsp;€</p>
 				</div>
 				{# <div class="px-6 pt-4 pb-2">
 					<form action="{{ path('app_cart_add') }}" method="post" class="flex">

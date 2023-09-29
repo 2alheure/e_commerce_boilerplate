@@ -14,7 +14,7 @@
 		<div class="flex flex-col">
 			{{ product.description|raw }}
 
-			<p class="underline text-bold">{{product.prix|number_format(2,',',' ') }}&nbsp;€</p>
+			<p class="underline text-bold">{{(product.prix / 100)|number_format(2,',',' ') }}&nbsp;€</p>
 
 			<form action="{{ path('app_cart_add', {id: product.id}) }}" method="post" class="flex">
 				<input type="number" min="1" max="{{ product.stock }}" class="outline" name="quantity">

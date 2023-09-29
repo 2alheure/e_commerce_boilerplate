@@ -22,11 +22,11 @@
 			{% for product in cart.produits %}
 				<tr class="even:bg-gray-200">
 					<td class="border">{{product.nom}}</td>
-					<td class="border">{{product.prix|number_format(2,',',' ') }}&nbsp;€</td>
+					<td class="border">{{(product.prix / 100)|number_format(2,',',' ') }}&nbsp;€</td>
 					<td class="border">1</td>
-					<td class="border">{{(product.prix * 1)|number_format(2,',',' ') }}&nbsp;€</td>
-					<td class="border">
-						<a href="{{ path('app_cart_remove', {id: product.id}) }}" class="px-2 py-1 bg-red-500 text-white hover:bg-red-700">
+					<td class="border">{{((product.prix / 100) * 1)|number_format(2,',',' ') }}&nbsp;€</td>
+					<td class="border text-center">
+						<a href="{{ path('app_cart_remove', {id: product.id}) }}" class="px-2 py-1 bg-red-500 text-white hover:bg-red-700 rounded">
 							<i class="fa fa-trash" aria-hidden="true"></i>
 						</a>
 					</td>
@@ -34,5 +34,14 @@
 			{% endfor %}
 		</tbody>
 	</table>
+
+
+    <p class="text-center mt-8">
+        <a href="{{ path('app_payment') }}" class="text-white bg-blue-500 text-lg py-1 px-4 rounded">
+            <i class="fa fa-credit-card mr-1" aria-hidden="true"></i>
+            Valider la commande
+        </a>
+    </p>
+
 
 {% endblock %}
