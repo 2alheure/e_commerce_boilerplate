@@ -13,6 +13,22 @@
         {% endblock %}
     </head>
     <body>
+
+        <div class="bg-gray-800 text-white py-4">
+            <nav class="container flex justify-around">
+                <a href="{{ path('app_home') }}">Accueil</a>
+                <a href="{{ path('app_contact') }}">Contact</a>
+
+                {% if app.user %}
+                <a href="{{ path('admin') }}">Admin</a>
+                <a href="{{ path('app_logout') }}">Déconnexion</a>
+                {% else %}
+                <a href="{{ path('app_login') }}">Connexion</a>
+                <a href="{{ path('app_register') }}">Inscription</a>
+                {% endif %}
+            </nav>
+        </div>
+
         {% block body %}{% endblock %}
     </body>
 </html>
