@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{ product.nom }}
+{% endblock %}
+
+{% block body %}
+	<h1 class="text-bold text-xl text-center">{{ product.nom }}</h1>
+
+
+	<div class="grid grid-cols-1 md:grid-cols-2">
+		<img src="{{ asset('assets/images/products/' ~ product.image) }}" class="aspect-square object-cover" alt="">
+
+		<div class="flex flex-col">
+			{{ product.description|raw }}
+
+			<p class="underline text-bold">{{product.prix|number_format(2,',',' ') }}&nbsp;€</p>
+
+			<form action="{# {{ path('app_cart_add') }} #}" method="post" class="flex">
+				<input type="number" min="1" max="{{ product.stock }}" class="outline" name="quantity">
+				<button type="submit" class="rounded bg-blue-500 text-white">
+					<i class="fa fa-cart-plus" aria-hidden="true"></i>
+				</button>
+			</form>
+		</div>
+	</div>
+
+{% endblock %}
