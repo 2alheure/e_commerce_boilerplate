@@ -16,7 +16,7 @@
 
 			<p class="underline text-bold">{{product.prix|number_format(2,',',' ') }}&nbsp;€</p>
 
-			<form action="{# {{ path('app_cart_add') }} #}" method="post" class="flex">
+			<form action="{{ path('app_cart_add', {id: product.id}) }}" method="post" class="flex">
 				<input type="number" min="1" max="{{ product.stock }}" class="outline" name="quantity">
 				<button type="submit" class="rounded bg-blue-500 text-white">
 					<i class="fa fa-cart-plus" aria-hidden="true"></i>

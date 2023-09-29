@@ -8,8 +8,12 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: StatusRepository::class)]
-class Status
-{
+class Status {
+    const
+        PANIER = 1,
+        VALIDEE = 2,
+        PAYEE = 3;
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -21,23 +25,19 @@ class Status
     #[ORM\OneToMany(mappedBy: 'status', targetEntity: Commande::class)]
     private Collection $commandes;
 
-    public function __construct()
-    {
+    public function __construct() {
         $this->commandes = new ArrayCollection();
     }
 
-    public function getId(): ?int
-    {
+    public function getId(): ?int {
         return $this->id;
     }
 
-    public function getNom(): ?string
-    {
+    public function getNom(): ?string {
         return $this->nom;
     }
 
-    public function setNom(string $nom): static
-    {
+    public function setNom(string $nom): static {
         $this->nom = $nom;
 
         return $this;
@@ -46,13 +46,11 @@ class Status
     /**
      * @return Collection<int, Commande>
      */
-    public function getCommandes(): Collection
-    {
+    public function getCommandes(): Collection {
         return $this->commandes;
     }
 
-    public function addCommande(Commande $commande): static
-    {
+    public function addCommande(Commande $commande): static {
         if (!$this->commandes->contains($commande)) {
             $this->commandes->add($commande);
             $commande->setStatus($this);
@@ -61,8 +59,7 @@ class Status
         return $this;
     }
 
-    public function removeCommande(Commande $commande): static
-    {
+    public function removeCommande(Commande $commande): static {
         if ($this->commandes->removeElement($commande)) {
             // set the owning side to null (unless already changed)
             if ($commande->getStatus() === $this) {

@@ -1,38 +1,43 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-        
-        {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-        {% endblock %}
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			{% block title %}Welcome!
+			{% endblock %}
+		</title>
+		<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-        {% endblock %}
-    </head>
-    <body>
+		{% block stylesheets %}
+			{{ encore_entry_link_tags('app') }}
+		{% endblock %}
 
-        <div class="bg-gray-800 text-white py-4">
-            <nav class="container flex justify-around">
-                <a href="{{ path('app_home') }}">Accueil</a>
-                <a href="{{ path('app_contact') }}">Contact</a>
+		{% block javascripts %}
+			{{ encore_entry_script_tags('app') }}
+		{% endblock %}
+	</head>
+	<body>
 
-                <a href="{{ path('app_products_list') }}">Les produits</a>
+		<div class="bg-gray-800 text-white py-4">
+			<nav class="container flex justify-around">
+				<a href="{{ path('app_home') }}">Accueil</a>
+				<a href="{{ path('app_contact') }}">Contact</a>
 
-                {% if app.user %}
-                <a href="{{ path('admin') }}">Admin</a>
-                <a href="{{ path('app_logout') }}">Déconnexion</a>
-                {% else %}
-                <a href="{{ path('app_login') }}">Connexion</a>
-                <a href="{{ path('app_register') }}">Inscription</a>
-                {% endif %}
-            </nav>
-        </div>
+				<a href="{{ path('app_products_list') }}">Les produits</a>
 
-        {% block body %}{% endblock %}
-    </body>
-</html>
+				{% if app.user %}
+					<a href="{{ path('admin') }}">Admin</a>
+					<a href="{{ path('app_cart') }}">Mon panier</a>
+					<a href="{{ path('app_logout') }}">Déconnexion</a>
+				{% else %}
+					<a href="{{ path('app_login') }}">Connexion</a>
+					<a href="{{ path('app_register') }}">Inscription</a>
+				{% endif %}
+			</nav>
+		</div>
+
+		<div class="container mx-auto"> {% block body %}{% endblock %}
+			</div>
+		</body>
+	</html>
